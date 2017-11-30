@@ -53,7 +53,7 @@ public final class ACRA {
 
     public static /*non-final*/ boolean DEV_LOGGING = false; // Should be false for release.
 
-    public static final String LOG_TAG = ACRA.class.getSimpleName();
+    public static final String LOG_TAG = "ACRA";
 
     @NonNull
     public static ACRALog log = new AndroidLogDelegate();
