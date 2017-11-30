@@ -185,6 +185,9 @@ public class AcraAnnotationProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
                 .addTypeVariable(returnType);
         utils.addClassJavadoc(classBuilder, config);
+        // Add no-arg constructor that does not use annotations.
+        classBuilder.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PUBLIC).build()).build();
+        // Add 1-arg constructor that reads @ReportsCrashes annotation.
         final CodeBlock.Builder constructor = CodeBlock.builder()
                 .addStatement("final $1T $2L = $3L.getClass().getAnnotation($1T.class)", config.asType(), VAR_ANNOTATION_CONFIG, PARAM_APP)
                 .beginControlFlow("if ($L != null)", VAR_ANNOTATION_CONFIG);

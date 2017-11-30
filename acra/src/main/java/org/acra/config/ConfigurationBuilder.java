@@ -44,9 +44,16 @@ import static org.acra.ACRAConstants.*;
 @org.acra.annotation.ConfigurationBuilder
 public final class ConfigurationBuilder extends BaseConfigurationBuilder<ConfigurationBuilder> {
 
-    private final Map<String, String> httpHeaders;
-    private final Map<ReportField, Boolean> reportContentChanges;
-
+    private final Map<String, String> httpHeaders = new HashMap<String, String>();
+    private final Map<ReportField, Boolean> reportContentChanges = new EnumMap<ReportField, Boolean>(ReportField.class);
+    
+    /**
+     * Constructs an empty ConfigurationBuilder.
+     */
+    public ConfigurationBuilder() {
+        super();
+    }
+    
     /**
      * Constructs a ConfigurationBuilder that is prepopulated with any
      * '@ReportCrashes' annotation declared on the Application class.
@@ -55,8 +62,6 @@ public final class ConfigurationBuilder extends BaseConfigurationBuilder<Configu
      */
     public ConfigurationBuilder(@NonNull Application app) {
         super(app);
-        httpHeaders = new HashMap<String, String>();
-        reportContentChanges = new EnumMap<ReportField, Boolean>(ReportField.class);
     }
 
     /**
