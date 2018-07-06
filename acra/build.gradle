@@ -80,12 +80,12 @@ task javadoc(type: Javadoc) {
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
-afterEvaluate {
-    javadoc.classpath += files(android.libraryVariants.collect { variant ->
-        variant.javaCompile.classpath.files
-    })
-    javadoc.dependsOn generateReleaseSources
-}
+//afterEvaluate {
+//    javadoc.classpath += files(android.libraryVariants.collect { variant ->
+//        variant.javaCompile.classpath.files
+//    })
+//    javadoc.dependsOn generateReleaseSources
+//}
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
